@@ -1,10 +1,10 @@
 import { menuArray } from "./data.js";
 
 const orderEl = document.getElementById('order-items')
+const cartEl = document.getElementById('cart-container')
 
 const cart = [];
 
-const symbol = cart.isAdded ? "-" : "+";
 
 document.addEventListener('click', function(e){
 
@@ -22,6 +22,7 @@ function addItemToCart(id){
     
     !cartIds.includes(Number(id)) ? cart.push({...cartAdded[0], isAdded: true }) : ""
     console.log(cart)
+    renderCartItems()
 
 }
 
@@ -29,6 +30,24 @@ function addItemToCart(id){
 
 
 
+
+
+
+
+function renderCartItems(){
+    let html = ''
+    cart.forEach(({name, price})=>{
+        html += `
+            <div class='cart-item'>
+                <h4 class="item-name">${name}</h4>
+                <h5>remvoe</h5>
+            </div>
+            <h5 class="item-price">${price}</h5>
+        `
+    })
+    cartEl.innerHTML = html
+
+}
 
 
 function renderPage(){
@@ -45,7 +64,7 @@ function renderPage(){
                     <p>$${price}</p>
                 </div>
                 <div class="item-add-btn">
-                    <button id=${id} data-id="${id}">${symbol}</button>
+                    <button id=${id} data-id="${id}">+</button>
                 </div>
             </div>
         `
