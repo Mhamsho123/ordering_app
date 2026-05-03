@@ -3,13 +3,15 @@ import { menuArray } from "./data.js";
 const orderEl = document.getElementById('order-items')
 const cartEl = document.getElementById('cart-container')
 
-const cart = [];
+let cart = [];
 
 
 document.addEventListener('click', function(e){
 
     if(e.target.dataset.id)
         addItemToCart(e.target.dataset.id)
+    if(e.target.dataset.remove)
+        removeItemFromCart(e.target.dataset.remove)
 
 })
 
@@ -27,20 +29,21 @@ function addItemToCart(id){
 }
 
 
-
-
-
-
-
+function removeItemFromCart(id){
+    cart = cart.filter((item) =>{
+        return item.id !== Number(id)
+    })
+    renderCartItems()
+}
 
 
 function renderCartItems(){
     let html = ''
-    cart.forEach(({name, price})=>{
+    cart.forEach(({name, price, id})=>{
         html += `
             <div class='cart-item'>
                 <h4 class="item-name">${name}</h4>
-                <h5>remvoe</h5>
+                <button data-remove='${id}'>remove</button>
             </div>
             <h5 class="item-price">${price}</h5>
         `
