@@ -39,18 +39,23 @@ function removeItemFromCart(id){
 
 function renderCartItems(){
     let html = ''
+
     cart.forEach(({name, price, id})=>{
         html += `
-            <div class='cart-item'>
-                <h4 class="item-name">${name}</h4>
-                <button data-remove='${id}'>remove</button>
+            <div class="cart-item">
+                <div class="cart-left">
+                    <h4 class="item-name">${name}</h4>
+                    <button class="remove-btn" data-remove="${id}">remove</button>
+                </div>
+
+                <h5 class="item-price">$${price}</h5>
             </div>
-            <h5 class="item-price">${price}</h5>
         `
     })
-    cartEl.innerHTML = html
 
+    cartEl.innerHTML = html
 }
+
 
 
 function renderPage(){
