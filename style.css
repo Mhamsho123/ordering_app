@@ -84,3 +84,6 @@ body {
     cursor: pointer;
 }
 
+.complete-btn{
+    display: none;
+}

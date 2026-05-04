@@ -2,6 +2,7 @@ import { menuArray } from "./data.js";
 
 const orderEl = document.getElementById('order-items')
 const cartEl = document.getElementById('cart-container')
+const completeOrderEl = document.getElementById('complete-btn')
 
 let cart = [];
 
@@ -15,6 +16,11 @@ document.addEventListener('click', function(e){
 
 })
 
+function renderingFunctions(){
+    renderCartItems()
+    completeOrder()
+}
+
 
 function addItemToCart(id){
     const cartAdded = menuArray.filter(function(items){
@@ -24,7 +30,7 @@ function addItemToCart(id){
     
     !cartIds.includes(Number(id)) ? cart.push({...cartAdded[0], isAdded: true }) : ""
     console.log(cart)
-    renderCartItems()
+    renderingFunctions()
 
 }
 
@@ -33,19 +39,29 @@ function removeItemFromCart(id){
     cart = cart.filter((item) =>{
         return item.id !== Number(id)
     })
-    renderCartItems()
+    renderingFunctions()
 }
+
+function completeOrder(){
+    completeOrderEl.style.display = ""
+     cart.length > 0 ? completeOrderEl.style.display = "block" : "none";
+}
+
+
 
 
 function renderCartItems(){
     let html = ''
 
-    cart.forEach(({name, price, id})=>{
+    cart.forEach(({name, ingredients, price, id})=>{
         html += `
             <div class="cart-item">
                 <div class="cart-left">
                     <h4 class="item-name">${name}</h4>
                     <button class="remove-btn" data-remove="${id}">remove</button>
+                </div>
+                <div class="cart-item-ingredients">
+                    <h5 class="item-cart-ingredients">${ingredients.join(', ')}</h5>
                 </div>
 
                 <h5 class="item-price">$${price}</h5>
