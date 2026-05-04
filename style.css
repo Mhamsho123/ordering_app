@@ -93,4 +93,12 @@ body {
 
 .complete-btn{
     display: none;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    width: 25%;
+    height: 40px;
+    color: white;
+    font-weight: bolder;
+
 }
