@@ -4,16 +4,18 @@ const orderEl = document.getElementById('order-items')
 const cartEl = document.getElementById('cart-container')
 const completeOrderEl = document.getElementById('complete-btn')
 
+
 let cart = [];
 
 
 document.addEventListener('click', function(e){
 
-    if(e.target.dataset.id)
+    if(e.target.dataset.id){
         addItemToCart(e.target.dataset.id)
-    if(e.target.dataset.remove)
+    }
+    if(e.target.dataset.remove){
         removeItemFromCart(e.target.dataset.remove)
-
+    }
 })
 
 function renderingFunctions(){
@@ -45,7 +47,12 @@ function removeItemFromCart(id){
 function completeOrder(){
     completeOrderEl.style.display = ""
      cart.length > 0 ? completeOrderEl.style.display = "block" : "none";
+        completeOrderEl.addEventListener('click', function(){
+            console.log('how you doing')
+
+        })
 }
+
 
 
 
