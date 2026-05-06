@@ -3,6 +3,7 @@ import { menuArray } from "./data.js";
 const orderEl = document.getElementById('order-items')
 const cartEl = document.getElementById('cart-container')
 const completeOrderEl = document.getElementById('complete-btn')
+const formEl = document.getElementById('form')
 
 
 let cart = [];
@@ -48,7 +49,7 @@ function completeOrder(){
     completeOrderEl.style.display = ""
      cart.length > 0 ? completeOrderEl.style.display = "block" : "none";
         completeOrderEl.addEventListener('click', function(){
-            console.log('how you doing')
+            formEl.style.display = "block";            
 
         })
 }
